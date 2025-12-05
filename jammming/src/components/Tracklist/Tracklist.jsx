@@ -1,12 +1,19 @@
 import Track from "../Track/Track";
 import styles from "./Tracklist.module.css";
 
-function Tracklist({ tracks }) {
+function Tracklist(props) {
   return (
     <div className={styles.Tracklist}>
-      {tracks.map((track) => (
-        <Track key={track.id} track={track} />
-      ))}
+      {props.tracks &&
+        props.tracks.map((track) => (
+          <Track
+            key={track.id}
+            track={track}
+            onAdd={props.onAdd}
+            onRemove={props.onRemove}
+            isRemoval={props.isRemoval}
+          />
+        ))}
     </div>
   );
 }
