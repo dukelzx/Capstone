@@ -1,12 +1,37 @@
+import { useState } from "react";
 import Tracklist from "../Tracklist/Tracklist";
 import styles from "./Playlist.module.css";
-import { mockPlaylist } from "../../data/mockData";
-function Playlist() {
+function Playlist(props) {
+  const [isEditing, setIsEditing] = useState(false);
+  const handleNameChange = (event) => {
+    props.onNameChange(event.target.value);
+  };
+  const handleBlur = () => {
+    if (props.playlistName.trim() === "") {
+      props.onNameChange("New Playlist");
+    }
+    setIsEditing(false);
+  };
   return (
     <div className={styles.Playlist}>
-      <h2>My Playlist</h2>
-       <Tracklist tracks={mockPlaylist} />
-      <button>Save To Spotify</button>
+      {isEditing ? (
+        <input
+          value={props.playlistName}
+          onChange={handleNameChange}
+          onBlur={handleBlur}
+          autoFocus
+        />
+      ) : (
+        <h2 onClick={() => setIsEditing(true)}>{props.playlistName}</h2>
+      )}
+      <Tracklist
+        tracks={props.playlistTracks}
+        onRemove={props.onRemove}
+        isRemoval={true}
+      />
+      <button className={styles.PlaylistSave} onClick={props.onSave}>
+        Save To Spotify
+      </button>
     </div>
   );
 }
