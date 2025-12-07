@@ -1,0 +1,88 @@
+/* src/components/App/App.module.css */
+
+/* Main application container */
+.App {
+  /* Sets the minimum height to cover the full viewport */
+  min-height: 100vh;
+  
+  /* Adds top padding to prevent the fixed header from overlapping content */
+  padding-top: 7rem; 
+  padding-bottom: 2rem;
+  
+  /* Hides horizontal scrollbars */
+  overflow-x: hidden; 
+  position: relative;
+
+  /* Global typography settings */
+  color: #ffffff;
+  font-family: 'Work Sans', sans-serif; 
+
+  /* Background configuration: Dark overlay + Image */
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
+    url('../../assets/background.png'); 
+    
+  /* Ensures background covers the screen and remains fixed during scrolling */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+}
+
+/* Floating Header (Application Title) */
+.App h1 {
+  /* Fixes the header to the top of the viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  
+  /* Layout and spacing */
+  padding: 1.5rem 0;
+  text-align: center;
+  
+  /* Typography styling */
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  
+  /* Transparent background */
+  background: transparent; 
+  
+  /* Text shadow for readability against any background */
+  text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+  
+  /* Ensures the header stays above other elements */
+  z-index: 1000;
+}
+
+/* Main Content Container (Columns) */
+.main {
+  /* Flexbox layout to align columns side-by-side */
+  display: flex;
+  justify-content: space-between;
+  
+  /* Side padding for the content area */
+  padding: 0 10%;
+  width: 100%;
+  
+  /* Includes padding in width calculations */
+  box-sizing: border-box; 
+  
+  /* Spacing from top elements */
+  margin-top: 2rem;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 1024px) {
+  .main {
+    padding: 0 5%;
+    /* Stacks columns vertically on mobile/tablet */
+    flex-direction: column; 
+    align-items: center; 
+    gap: 2rem;
+  }
+}

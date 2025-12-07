@@ -1,0 +1,78 @@
+/* src/components/SearchBar/SearchBar.module.css */
+
+.SearchBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  margin-top: 2rem; /* Just a little space from the top */
+}
+
+/* The Input Field */
+.SearchBar input {
+  width: 350px; /* Slightly wider for better UX */
+  padding: .88rem 1.5rem;
+  
+  /* [Glassmorphism Input] */
+  /* Make it white but slightly translucent */
+  background-color: #fff; 
+  border: 1px solid transparent;
+  border-radius: 50px; /* Pill shape matches the buttons */
+  
+  /* Text styling */
+  color: #010c3f;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  
+  /* Smooth focus transition */
+  transition: all 0.25s ease;
+  outline: none;
+  
+  /* Initial shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus State: When user clicks to type */
+.SearchBar input:focus {
+  /* Add a glow effect matching the theme color */
+  box-shadow: 0 0 15px rgba(74, 28, 214, 0.4); 
+  transform: scale(1.02); /* Subtle pop effect */
+}
+
+/* The "SEARCH" Button */
+.SearchButton {
+  cursor: pointer;
+  width: 8rem;
+  padding: .8rem 0;
+  border-radius: 50px;
+  
+  /* [Theme Consistency] 
+     Match the exact same color/gradient as the Playlist Save button */
+  background-color: #4a1cd6; 
+  
+  text-align: center;
+  font-size: .9rem;
+  transition: all .25s ease-in-out;
+  color: #fff;
+  font-weight: 700;
+  border: 0;
+  margin-top: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase; /* Make "SEARCH" uppercase for style */
+}
+
+/* Button Hover Effect */
+.SearchButton:hover {
+  background-color: #6c41ec;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(108, 65, 236, 0.5); /* Purple/Blue Glow */
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .SearchBar input {
+    width: 250px;
+  }
+}

@@ -1,0 +1,59 @@
+/* src/components/SearchResults/SearchResults.module.css */
+
+/* Main container for search results */
+.SearchResults {
+  /* Width relative to the parent container */
+  width: 55%;
+  
+  /* Includes padding in width calculations */
+  box-sizing: border-box;
+  
+  /* Fixed height with vertical scrolling */
+  height: 600px;
+  overflow-y: scroll;
+  padding: 1.5rem;
+  
+  /* Glassmorphism: Semi-transparent background */
+  background-color: rgba(22, 33, 62, 0.4); 
+  
+  /* Glassmorphism: Background blur filter */
+  backdrop-filter: blur(20px); 
+  -webkit-backdrop-filter: blur(20px); 
+  
+  /* Glassmorphism: Subtle border lighting effect */
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  
+  /* Inner and outer shadows for depth */
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  /* Hides scrollbar for Firefox/IE */
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
+/* Hides scrollbar for Chrome/Safari */
+.SearchResults::-webkit-scrollbar { 
+    display: none; 
+}
+
+/* Section Title */
+.SearchResults h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    margin-top: 0;
+    color: #ffffff; 
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+  .SearchResults {
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+}
