@@ -41,7 +41,7 @@ function App() {
   };
   return (
     <div className={styles.App}>
-      <h1>Zane React App</h1>
+      <h1>Sound   Foundry</h1>
       <SearchBar onSearch={search} />
       <div className={styles.main}>
         <SearchResults searchResults={searchResults} onAdd={addTrack} />

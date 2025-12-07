@@ -1,4 +1,3 @@
-// src/utils/Spotify.js
 const clientId = '57d9c5bcf55f4985a6cc6224c481b8af';
 const redirectUri = 'http://127.0.0.1:5173/';
 const TOKEN_KEY = 'spotify_access_token';
@@ -19,7 +18,6 @@ function storeToken(token, expiresIn) {
   localStorage.setItem(TOKEN_KEY, JSON.stringify({ token, expiresAt }));
 }
 
-// 生成随机字符串
 function generateRandomString(length) {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -29,7 +27,6 @@ function generateRandomString(length) {
   return text;
 }
 
-// 生成 code challenge
 async function generateCodeChallenge(codeVerifier) {
   const encoder = new TextEncoder();
   const data = encoder.encode(codeVerifier);
@@ -40,7 +37,6 @@ async function generateCodeChallenge(codeVerifier) {
     .replace(/=+$/, '');
 }
 
-// 发起 PKCE 授权流程
 async function startPKCEAuth() {
   const codeVerifier = generateRandomString(128);
   sessionStorage.setItem('spotify_code_verifier', codeVerifier);
@@ -53,7 +49,6 @@ async function startPKCEAuth() {
   window.location = authUrl;
 }
 
-// 用 code 换 token
 async function fetchAccessToken(authCode) {
   const codeVerifier = sessionStorage.getItem('spotify_code_verifier');
   const body = new URLSearchParams({
@@ -85,23 +80,21 @@ const Spotify = {
     let token = getStoredToken();
     if (token) return token;
 
-    // 检查 URL 是否带有 code
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     if (code) {
       token = await fetchAccessToken(code);
-      window.history.replaceState({}, document.title, '/'); // 清掉 URL
+      window.history.replaceState({}, document.title, '/'); 
       return token;
     }
 
-    // 否则发起 PKCE 授权
     await startPKCEAuth();
-    return null; // 等用户授权回来
+    return null; 
   },
 
   async search(term) {
     const token = await Spotify.getAccessToken();
-    if (!token) return []; // token 不存在直接返回
+    if (!token) return []; 
 
     try {
       console.log('Search term:', term);
@@ -134,12 +127,10 @@ const Spotify = {
 
     const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
     try {
-      // 获取用户 ID
       const userRes = await fetch('https://api.spotify.com/v1/me', { headers });
       const userData = await userRes.json();
       const userId = userData.id;
 
-      // 创建歌单
       const playlistRes = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         headers,
         method: 'POST',
@@ -148,7 +139,6 @@ const Spotify = {
       const playlistData = await playlistRes.json();
       const playlistId = playlistData.id;
 
-      // 添加歌曲
       await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
         headers,
         method: 'POST',

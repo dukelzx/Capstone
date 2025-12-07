@@ -1,0 +1,9 @@
+/* src/components/Tracklist/Tracklist.module.css */
+
+.Tracklist {
+  /* Critical: Forces the list to stretch to the edges of the container */
+  width: 100%;
+  
+  /* Optional: Adds a little breathing room between the header/input and the first song */
+  margin-top: 1rem; 
+}
